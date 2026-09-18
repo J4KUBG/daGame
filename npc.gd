@@ -1,30 +1,43 @@
 extends Node2D
-const speed = 30
-var current_state = IDLE
 
-var dir = Vector2.RIGHT
-var start_pos
+var player_near := false
+var dialogue_index := 0
 
-var is_roaming = true
-var is_chatting = false
+var dialogue = [
+	"Cześć!",
+	"Co robisz w naszej szkole?",
+	"Lepiej nie schodź do piwnicy...",
+	"Podobno dzieją się tam dziwne rzeczy."
+]
 
-var player
-var player_in_chat_zone = false
-enum {
-	IDLE,
-	NEW_DIR,
-	MOVE
-}
+@onready var label = $Label
 
 func _ready():
-	randomize()
-	start_pos = position
-func _process(delta):
-	if current_state == 0 or current_state == 1:
-		pass
-		#$Stickman.play("idle") - animacja idle #
-	elif current_state == 2 and !is_chatting:
-		if dir.x == -1:
-			pass
-			#$Stickman.play("walk_w") - do dokonczenia system 
-	
+	label.visible = false
+
+
+func _process(_delta):
+	if player_near and Input.is_action_just_pressed("interact"):
+		show_next_dialogue()
+
+
+func show_next_dialogue():
+	label.visible = true
+
+	label.text = dialogue[dialogue_index]
+
+	dialogue_index += 1
+
+	if dialogue_index >= dialogue.size():
+		dialogue_index = 0
+
+func _on_chat_detection_area_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_near = true
+
+
+func _on_chat_detection_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		player_near = false
+		label.visible = false
+		dialogue_index = 0

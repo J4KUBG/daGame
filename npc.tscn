@@ -24,5 +24,16 @@ texture = ExtResource("2_kh24r")
 scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_xxcha")
 
-[node name="Timer" type="Timer" parent="." unique_id=1938869503]
-autostart = true
+[node name="Label" type="Label" parent="Chat_detection_area" unique_id=1605892685]
+offset_left = -86.0
+offset_top = -68.0
+offset_right = 88.0
+offset_bottom = -45.0
+text = "Dziecko, mów do mnie
+
+
+
+                  [E]"
+
+[connection signal="body_entered" from="Chat_detection_area" to="." method="_on_chat_detection_area_body_entered"]
+[connection signal="body_exited" from="Chat_detection_area" to="." method="_on_chat_detection_area_body_exited"]

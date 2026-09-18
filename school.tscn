@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c3h03dvgudg6s" path="res://door.tscn" id="5_wvpkg"]
 [ext_resource type="PackedScene" uid="uid://ck6nawhto6p04" path="res://table.tscn" id="6_ixv6b"]
 [ext_resource type="PackedScene" uid="uid://dafaen66og2gv" path="res://chair.tscn" id="7_6qn5t"]
+[ext_resource type="PackedScene" uid="uid://eiust1kpddet" path="res://npc.tscn" id="8_iwj2h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qt6c6"]
 texture = ExtResource("2_ryrou")
@@ -81,6 +82,10 @@ scale = Vector2(1.9589834, 1.7214671)
 position = Vector2(-2417, 2400)
 rotation = 0.2617994
 scale = Vector2(1.9589834, 1.7214671)
+
+[node name="npc" parent="." unique_id=1442010042 instance=ExtResource("8_iwj2h")]
+z_index = 1
+position = Vector2(-2416, 2399)
 
 [editable path="Door_01"]
 [editable path="Door"]
