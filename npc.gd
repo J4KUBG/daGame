@@ -1,43 +1,29 @@
 extends Node2D
 
-var player_near := false
-var dialogue_index := 0
-
-var dialogue = [
-	"Cześć!",
-	"Co robisz w naszej szkole?",
-	"Lepiej nie schodź do piwnicy...",
-	"Podobno dzieją się tam dziwne rzeczy."
+@export var npc_name: String = "Woźny"
+@export var dialogue: Array[Dictionary] = [
+	{"speaker": "Woźny", "text": "Ej, ty!"},
+	{"speaker": "Gracz", "text": "Ja?"},
+	{"speaker": "Woźny", "text": "Piwnica jest zamknięta. Lepiej tam nie schodź."}
 ]
 
-@onready var label = $Label
+var player_near: Node2D
+@onready var prompt: Label = $Chat_detection_area/Label
 
-func _ready():
-	label.visible = false
+func _ready() -> void:
+	prompt.text = "E - Rozmawiaj"
+	prompt.visible = false
 
-
-func _process(_delta):
-	if player_near and Input.is_action_just_pressed("interact"):
-		show_next_dialogue()
-
-
-func show_next_dialogue():
-	label.visible = true
-
-	label.text = dialogue[dialogue_index]
-
-	dialogue_index += 1
-
-	if dialogue_index >= dialogue.size():
-		dialogue_index = 0
+func _process(_delta: float) -> void:
+	if is_instance_valid(player_near) and Input.is_action_just_pressed("interact") and not DialogueManager.is_active():
+		DialogueManager.start_dialogue(npc_name, dialogue, player_near)
 
 func _on_chat_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		player_near = true
-
+		player_near = body
+		prompt.visible = true
 
 func _on_chat_detection_area_body_exited(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		player_near = false
-		label.visible = false
-		dialogue_index = 0
+	if body == player_near:
+		player_near = null
+		prompt.visible = false

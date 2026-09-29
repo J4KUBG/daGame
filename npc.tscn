@@ -11,7 +11,9 @@ size = Vector2(27, 57)
 [node name="npc" type="Node2D" unique_id=1442010042]
 script = ExtResource("1_xxcha")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2020572904]
+[node name="BodyCollision" type="StaticBody2D" parent="." unique_id=1653540821]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyCollision" unique_id=2020572904]
 position = Vector2(-0.5, -1.5)
 shape = SubResource("RectangleShape2D_ul7y6")
 
@@ -25,6 +27,7 @@ scale = Vector2(4, 4)
 shape = SubResource("CircleShape2D_xxcha")
 
 [node name="Label" type="Label" parent="Chat_detection_area" unique_id=1605892685]
+visible = false
 offset_left = -86.0
 offset_top = -68.0
 offset_right = 88.0

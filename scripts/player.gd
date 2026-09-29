@@ -1,8 +1,16 @@
 extends CharacterBody2D
 
 @export var speed = 200
+var movement_locked := false
 
-func _physics_process(delta):
+func _ready() -> void:
+	add_to_group("player")
+	add_to_group("Player")
+
+func _physics_process(_delta):
+	if movement_locked:
+		velocity = Vector2.ZERO
+		return
 
 	var direction = Vector2.ZERO
 
@@ -23,3 +31,8 @@ func _physics_process(delta):
 	velocity = direction * speed
 
 	move_and_slide()
+
+func set_movement_locked(locked: bool) -> void:
+	movement_locked = locked
+	if locked:
+		velocity = Vector2.ZERO

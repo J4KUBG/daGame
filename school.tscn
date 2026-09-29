@@ -5,17 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://b3cxt450uivmk" path="res://assets/tiles/floor_beta.png" id="2_ryrou"]
 [ext_resource type="Texture2D" uid="uid://py4ny3avrhvt" path="res://assets/tiles/wall.png" id="3_apydt"]
 [ext_resource type="PackedScene" uid="uid://c3h03dvgudg6s" path="res://door.tscn" id="5_wvpkg"]
-[ext_resource type="PackedScene" uid="uid://ck6nawhto6p04" path="res://table.tscn" id="6_ixv6b"]
-[ext_resource type="PackedScene" uid="uid://dafaen66og2gv" path="res://chair.tscn" id="7_6qn5t"]
-[ext_resource type="PackedScene" uid="uid://eiust1kpddet" path="res://npc.tscn" id="8_iwj2h"]
+[ext_resource type="PackedScene" path="res://classroom.tscn" id="9_classroom"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qt6c6"]
 texture = ExtResource("2_ryrou")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-1:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kul2n"]
 tile_size = Vector2i(32, 32)
@@ -60,12 +55,18 @@ layer_0/tile_data = PackedInt32Array(-131088, 0, 0, -65552, 0, 0, -16, 0, 0, 655
 
 [node name="Door_01" parent="." unique_id=284665281 instance=ExtResource("5_wvpkg")]
 position = Vector2(-385, -160)
+target_spawn_point = NodePath("TeleportPoint")
+door_name = "Korytarz"
+interaction_text = "E - Wejdź"
 
 [node name="TeleportPoint" parent="Door_01" index="2" unique_id=770240921]
 position = Vector2(-1535, 2688)
 
 [node name="Door" parent="." unique_id=1468377996 instance=ExtResource("5_wvpkg")]
 position = Vector2(-1919, 2592)
+target_spawn_point = NodePath("TeleportPoint")
+door_name = "Sala lekcyjna"
+interaction_text = "E - Wyjdź"
 
 [node name="Area2D" parent="Door" index="1" unique_id=1556414864]
 position = Vector2(-4, -12)
@@ -73,17 +74,8 @@ position = Vector2(-4, -12)
 [node name="TeleportPoint" parent="Door" index="2" unique_id=770240921]
 position = Vector2(1535, -2656)
 
-[node name="Table1" parent="." unique_id=230462466 instance=ExtResource("6_ixv6b")]
-position = Vector2(-2370, 2430)
-rotation = 1.5701586
-scale = Vector2(1.9589834, 1.7214671)
-
-[node name="Krzeslo1" parent="." unique_id=1896604921 instance=ExtResource("7_6qn5t")]
-position = Vector2(-2417, 2400)
-rotation = 0.2617994
-scale = Vector2(1.9589834, 1.7214671)
-
-[node name="npc" parent="." unique_id=1442010042 instance=ExtResource("8_iwj2h")]
+[node name="Classroom_01" parent="." instance=ExtResource("9_classroom")]
+position = Vector2(-2416, 2399)
 z_index = 1
 position = Vector2(-2416, 2399)
 

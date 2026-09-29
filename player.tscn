@@ -10,6 +10,7 @@ size = Vector2(32, 64)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=2060980068]
 z_index = 1
+groups = ["player", "Player"]
 script = ExtResource("1_1ftpm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=901498089]

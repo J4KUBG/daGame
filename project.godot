@@ -19,6 +19,11 @@ run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+TransitionManager="*res://scripts/transition_manager.gd"
+DialogueManager="*res://scripts/dialogue_manager.gd"
+
 [editor]
 
 movie_writer/fps=144
